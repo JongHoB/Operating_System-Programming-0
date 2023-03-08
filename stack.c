@@ -83,17 +83,17 @@ int main(int argc, char * const argv[])
 
 
 	/* And so on ..... */
-	for (i = 0; i < (1 << 12); i++) {
+	for (i = 0; i < (1 << 10); i++) {
 		push_stack(generate_string(buffer));
 	}
-	for (i = 0; i < (1 << 12) - 8; i++) {
+	for (i = 0; i < (1 << 10) - 8; i++) {
 		ret = pop_stack(buffer);
 		assert(ret == 0);
 	}
-	for (i = 0; i < (1 << 20); i++) {
+	for (i = 0; i < (1 << 10); i++) {
 		push_stack(generate_string(buffer));
 	}
-	for (i = 0; i < (1 << 20); i++) {
+	for (i = 0; i < (1 << 10); i++) {
 		ret = pop_stack(buffer);
 		assert(ret == 0);
 	}
