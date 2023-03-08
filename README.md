@@ -12,23 +12,22 @@ To warm up C programming, implement the stack with list head. In addition, get f
 
 - See [Wikipedia](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) for the explanation about the stack.
 
-- To *materialize* the abstract data type into C code, you need some mechanisms to give an ordered relationship between objects. In this programming assignment, it is enforced to use the `stack` instance and `struct entry` data structure defined in `stack.c` and `types.h`, respectively.
+- To *materialize* the abstract data type into C code, you need some mechanisms to give an ordered relationship between objects. In this programming assignment, you must use `struct list_head`, `stack` instance, and `struct entry` data structure defined in `list_head.h`, `stack.c`, and `types.h`, respectively.
   - You should use them as-is without modifying them.
-  - You should not define your own data structures nor instances. It is prohibited to define your own array and some indexes pointing to the top and bottom of the stack.
+  - You should not define your own data structures nor instances. It is prohibited to define your own array and/or some indexes pointing to the top and bottom of the stack.
 
-- The list head is one of the most handy, powerful data structures widely used in the Linux kernel. At first, it looks very weird, and its implementation (in `list_head.h`) is hard to understand even if you may master the pointer of C. Once you get used to it, however, it will be your best friend for building systems in C.
-- In fact, you don't have to understand how it works, but just try to get used to using it. It sounds crazy, but become Neo (believe me).
-- Here are some sites that may help you. You may find more (and better) examples in the Internet.
+- The list head is one of the most handy, powerful data structures widely used in the Linux kernel. At first, it looks very weird and its implementation (in `list_head.h`) is hard to understand even if you may master the pointer of C. Once you get used to it, however, it will be your best friend for building complicated systems.
+- In fact, you don't have to understand how it works but just try to get used to using it. It sounds crazy but become Neo (believe me).
+- Here are some sites that may help you. You may find more (and better) examples on the Internet.
   - Introduction: [https://kernelnewbies.org/FAQ/LinkedLists](https://kernelnewbies.org/FAQ/LinkedLists)
   - Kernel API manual: [https://www.kernel.org/doc/html/v4.15/core-api/kernel-api.html](https://www.kernel.org/doc/html/v4.15/core-api/kernel-api.html)
   - Advanced explanation: [https://medium.com/@414apache/kernel-data-structures-linkedlist-b13e4f8de4bf](https://medium.com/@414apache/kernel-data-structures-linkedlist-b13e4f8de4bf)
 
 - There are three functions in `pa0.c` waiting for your work. Complete `push_stack()`, `pop_stack()`, and `dump_stack()`.
 
-- `push_stack()` and `pop_stack()` are straightforward. Add the given string value into the top of the stack, or remove the top of the stack. You may use the head of the list head as the top or the bottom of the stack at your own discretion.
+- `push_stack()` and `pop_stack()` are straightforward. Add the given string value into the top of the stack, or remove a string from the top of the stack. You may use the head of the list head as the top or the bottom of the stack at your own discretion.
 
-- `dump_stack()` should dump the contents in `stack`. Print out the strings in `stack` from the top to the bottom. The strings should be printed out to `stderr` to get graded properly in pasubmit. To traverse the list head, you must use one of the functions with `list_for_` as prefix.
-
+- `dump_stack()` should dump the contents in `stack`. Print out the strings in `stack` from the bottom to the top. The strings should be printed out to `stderr` to get graded properly in pasubmit. To traverse the list head, you must use one of the API functions starting with `list_for_`.
 
 ### Tips and Restriction
 - Have a look at following functions
@@ -40,7 +39,7 @@ To warm up C programming, implement the stack with list head. In addition, get f
 
 - DO NOT ALLOCATE/DEFINE AN ARRAY TO HOLD `struct entry`. Instead, each entry should be dynamically allocated and freed using `malloc` and `free`.
 
-- DO NOT ACCESS `prev` AND `next` IN `list_head` DIRECTLY FOR ANY REASONS. You should use the API functions in the library to modify entries in the list, instead of exploiting internal data structures. YOU WILL NOT GET ANY POINT IF YOUR CODE ACCESS THESE VARIABLES DIRECTLY.
+- DO NOT ACCESS `prev` AND `next` IN `list_head` DIRECTLY. DO NOT EXPLOIT data structure internals but use the API functions in the library to modify entries in the list. YOU WILL NOT GET ANY POINT IF YOUR CODE ACCESS THESE VARIABLES FOR ANY REASONS.
 
 - The second testcase checks the memory leak of your program. You may use [Valgrind](https://valgrind.org/) to check and find the leaks.
 
