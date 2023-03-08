@@ -1,6 +1,6 @@
 ## Project #0: Warming up C programming
 
-### *** Due on 24:00, March 24 (Friday) ***
+### *** Due on 24:00, March 17 (Friday) ***
 
 
 ### Goal
