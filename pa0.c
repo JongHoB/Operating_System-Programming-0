@@ -30,7 +30,7 @@ extern struct list_head stack;
  * include any header files if you want to ...                        */
 
 #include <stdlib.h>                    /* like this */
-
+#include <string.h>
 /**
  * push_stack()
  *
@@ -41,6 +41,13 @@ extern struct list_head stack;
 void push_stack(char * const string)
 {
 	/* TODO: Implement this function */
+	struct entry * temp=(struct entry*)malloc(sizeof(struct entry));
+	temp->string=(char*)malloc(sizeof(char)*(strlen(string)+1));
+	strcpy(temp->string,string);
+
+
+	list_add(&(temp->list),&stack);
+	return;
 }
 
 
@@ -59,7 +66,15 @@ void push_stack(char * const string)
 int pop_stack(char * const buffer)
 {
 	/* TODO: Implement this function */
-	return -1;
+	if(list_empty(&stack)){return -1;}
+	else{
+		struct entry * temp=list_first_entry(&stack,struct entry,list);
+		strcpy(buffer,temp->string);
+		list_del(&(temp->list));
+		free(temp->string);
+		free(temp);
+		return 0;
+	}
 }
 
 
@@ -74,4 +89,14 @@ int pop_stack(char * const buffer)
 void dump_stack(void)
 {
 	/* TODO: Implement this function */
+	if(list_empty(&stack))return;
+	else{
+		struct entry * temp=NULL;
+		list_for_each_entry_reverse(temp,&stack,list){
+
+			fprintf(stderr,"%s\n",temp->string);
+		}	
+
+		return;
+	}
 }
